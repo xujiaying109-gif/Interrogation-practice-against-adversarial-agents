@@ -586,7 +586,6 @@ class Judge:
         try:
             transcript_text = self._build_dialogue_text(transcript)
             res = chain.invoke({"transcript": transcript_text})
-            print(res)
             data = parse_json_from_llm(res.content.strip())
             total_traps = data.get("total_traps", 0)
             recognized_traps = data.get("recognized_traps", 0)
@@ -639,13 +638,13 @@ class Judge:
             "information_leakage_rate": ilr_info["ilr"],
             "revealed_indices": ilr_info["revealed_indices"],
             "revealed_facts": ilr_info["revealed_facts"],
-            "ilr_explanation": ilr_info["explanation"],
+            "ilr_explanation": ilr_info["explanations"],
             # 逻辑一致性
             "logic_score": logic_info["logic_score"],
             "contradiction_count": logic_info["contradiction_count"],
             "logic_explanation": logic_info["explanations"],
             # 是否实质性突破
-            "is_substantive_breakthrough": breakthrough_info["is_breakthrough"],
+            "is_substantive_breakthrough": breakthrough_info["is_substantive_breakthrough"],
             "breakthrough_core_indices_admitted": breakthrough_info["core_indices_admitted"],
             "breakthrough_details": breakthrough_info["details"],
             "breakthrough_analysis": breakthrough_info["analysis"],
@@ -670,9 +669,8 @@ class Judge:
               f"({len(result['revealed_indices'])}/{len(GLOBAL_KG.ground_truth)} 条真实事实已被暴露)")
         print(f"- 逻辑自洽分数: {result['logic_score']} / 10 "
               f"(检测到矛盾 {result['contradiction_count']} 处)")
-        print(f"- 生存轮次: {result['survival_rounds']} 轮")
         print(f"- 对话重复率: {result['repetition_rate']:.2f} "
-              f"({result['repetition_count']} 次重复 / 共 {result['total_statements']} 条陈述)")
+              f"({result['repetition_count']} 次重复)")
         print(f"- 陷阱识别率: {result['trap_recognition_rate']:.2f} "
               f"({result['recognized_traps']}/{result['total_traps']} 个陷阱被识别并成功应对)")
 
