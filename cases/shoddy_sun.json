@@ -1,0 +1,81 @@
+{
+    "id": "shoddy_sun",
+    "title": "安置房外墙脱落案",
+    "suspect_profile": {
+        "name": "孙包工头",
+        "personality": "nervous",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "孙包工头承接了小区外墙保温工程。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "为省钱，将防火岩棉换成了易燃泡沫板。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "水泥砂浆配比不达标，少放了30%的水泥。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "一场大雨后，整面外墙大面积脱落。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "进货单据显示采购的是劣质材料。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "工人证言称孙包工头指示大家'省着点用料'。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "脱落/大雨/质量",
+                "narrative": "那是雨太大了，百年一遇的大雨，跟工程质量没关系！"
+            },
+            {
+                "tag": "材料/泡沫板/岩棉",
+                "narrative": "我买的材料都有合格证（伪造的），是供应商坑了我。"
+            },
+            {
+                "tag": "工人/证言",
+                "narrative": "那些工人和我有私仇，故意诬陷我，我从来没说过偷工减料。"
+            }
+        ]
+    },
+    "keywords": [
+        "外墙",
+        "岩棉",
+        "泡沫板",
+        "水泥",
+        "脱落",
+        "劣质",
+        "进货单",
+        "省钱",
+        "大雨",
+        "工人"
+    ]
+}

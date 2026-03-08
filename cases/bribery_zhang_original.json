@@ -1,0 +1,139 @@
+{
+    "id": "bribery_zhang_original",
+    "title": "张局长受贿案 (经典版)",
+    "suspect_profile": {
+        "name": "张局长",
+        "personality": "arrogant",
+        "speaking_style": "formal"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "张局长在茶馆202包厢收受李某10万元现金",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "2023年5月15日晚8点，张局长在云隐茶馆202包厢。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "收受了房地产商李某带来的10万元现金。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "李某当天上午在建设银行提取了10万元现金。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_4",
+                        "desc": "李某在茶馆待了大约45分钟后独自离开。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_5",
+                        "desc": "茶馆服务员目击到张局长当天穿了一件蓝色Polo衫。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_6",
+                        "desc": "张局长的手机信号基站定位当晚8点显示在茶馆附近。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_7",
+                        "desc": "张局长的妻子证言称当晚他并没有回家吃饭。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "张局长带走赃款的物理轨迹",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "现金是用一个印着'好利来'的黑色塑料袋装的。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "张局长离开时手里提着那个黑色塑料袋。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "当天张局长开的是尾号888的黑色奥迪A6。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_4",
+                        "desc": "警方在黑色塑料袋上提取到了张局长的指纹。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_3",
+                "fact_desc": "赃款挥霍买表",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_3_1",
+                        "desc": "事后张局长用这笔钱买了一块劳力士手表。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "茶馆/见面/李某/时间",
+                "narrative": "那天就是和老朋友喝茶叙旧，根本没谈钱，也没收东西。"
+            },
+            {
+                "tag": "钱/现金/10万/银行",
+                "narrative": "我根本没见着什么钱，李某走的时候什么都没留下，那钱跟我没关系。"
+            },
+            {
+                "tag": "袋子/好利来/黑色/指纹",
+                "narrative": "那个袋子？哦，那是李某带的点心，我让他带回去了，我碰了一下是因为想吃但没拿。"
+            },
+            {
+                "tag": "车/奥迪/888/轨迹",
+                "narrative": "那天车坏了，我打车去的，根本没开奥迪，你们肯定看错了。"
+            },
+            {
+                "tag": "手表/劳力士/买",
+                "narrative": "那块表是我十年前买的旧表，发票早找不到了，不是新买的。"
+            },
+            {
+                "tag": "回家/妻子/吃饭",
+                "narrative": "我老婆记错了，那天我回家吃晚饭了，她当时在看电视没注意我。"
+            }
+        ]
+    },
+    "keywords": [
+        "10万",
+        "现金",
+        "云隐茶馆",
+        "202包厢",
+        "好利来",
+        "黑色",
+        "塑料袋",
+        "奥迪",
+        "A6",
+        "888",
+        "李某",
+        "手表",
+        "劳力士",
+        "指纹",
+        "服务员",
+        "Polo衫",
+        "蓝色",
+        "建设银行",
+        "基站",
+        "定位"
+    ]
+}
