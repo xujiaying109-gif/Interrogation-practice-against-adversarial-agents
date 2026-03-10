@@ -44,3 +44,6 @@ other/
 !.gitignore
 !CoT/
 !CoT/**
+
+# Ignore __pycache__ inside CoT
+CoT/**/__pycache__/
