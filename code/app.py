@@ -56,7 +56,7 @@ def init_game(personality, rounds, t_ratio):
         {"USE_MOCK_LLM": False, "TOTAL_ROUNDS": rounds, "DEFAULT_SUSPECT": current_profile}
     )
     
-    referee_bot = Referee(api_client=api, truth_keywords=case.get("keywords",[]))
+    referee_bot = Referee(api_client=api, case_facts=case['case_data'].get("facts", [])) # 清空历史矛盾存储列表
 
     # [核心修复] 调用 workflow 构建工厂，获取纯净的图实例
     import workflow
@@ -186,7 +186,7 @@ if st.session_state.get("game") and st.session_state.game["started"]:
                 c1, c2, c3, c4 = st.columns(4)
                 c1.metric("防御值", f"{r['def']:.1f}")
                 c2.metric("压力值", f"{r['str']:.1f}")
-                c3.metric("逻辑分", int(r.get("logic_score", gs["max_rounds"])))
+                c3.metric("逻辑分", f"{int(r.get('logic_score', gs['max_rounds']))}/{gs['max_rounds']}")
                 c4.metric("泄露率", f"{r.get('leak_rate', 0.0) * 100:.0f}%")
                 if r.get("contradiction"): st.error(f"🚩 逻辑矛盾点：{r['contradiction']}")
 
@@ -225,7 +225,7 @@ if st.session_state.get("game") and st.session_state.game["started"]:
         with st.container(border=True):
             st.subheader(f"🏆 获胜方：{report.get('winner', '未知')}")
             col1, col2, col3 = st.columns(3)
-            col1.metric("最终逻辑分", report.get('logic_score', 0))
+            col1.metric("最终逻辑分", f"{report.get('logic_score', 0)}/{gs['max_rounds']}")
             col2.metric("信息泄露率", report.get('leak_rate', '0%'))
             col3.metric("防御削弱总计", f"{100-curr_def:.1f}")
 

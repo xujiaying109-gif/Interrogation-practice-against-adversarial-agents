@@ -5,10 +5,14 @@ from typing import List, Dict
 import prompts
 
 class Referee:
-    def __init__(self, police_evidence=None, api_client=None, truth_keywords=None):
+    def __init__(self, police_evidence=None, api_client=None, case_facts=None):
         self.api_client = api_client
-        self.truth_keywords = truth_keywords if truth_keywords else []
+        # self.truth_keywords = truth_keywords if truth_keywords else []
+        self.case_facts = case_facts if case_facts else []
         self.police_evidence = police_evidence
+        self.detected_conflicts = []  # 存储已检测的矛盾
+        self.detected_leaked_facts = []  # 存储已检测的泄密事实
+
 
     def verify_realtime_logic(self, current_response: str, history_rounds: List[Dict],
                               max_game_rounds: int = 5,
@@ -35,31 +39,46 @@ class Referee:
         system_prompt = prompts.SYSTEM_PROMPT_LOGIC_AUDITOR
         full_input = prompts.USER_PROMPT_LOGIC_AUDITOR.format(
             history_blob=history_blob,
-            current_response=current_response
+            current_response=current_response,
+            detected_contradictions="\n".join(self.detected_conflicts)
         )
 
         try:
             res = self.api_client.generate_response(system_prompt, full_input, temperature=0.0).strip()
             if "PASS" not in res.upper() and len(res) > 2:
                 result_data["conflict"] = res
+                self.detected_conflicts.append(res)  # 添加到已检测矛盾列表
         except:
             pass
         return result_data
 
     def semantic_leak_check(self, all_responses_str: str) -> List[str]:
         """
-        基于大模型的语义泄密评估：识别嫌疑人口供中实质上承认的清单元素。
+        基于大模型的语义泄密评估：识别嫌疑人口供中实质上承认的真相记忆。
         """
-        if not self.api_client or not self.truth_keywords:
+        
+        if not self.api_client:
             return []
+        
+        # 构建真相记忆数组
+        truth_memory = []
+        if self.case_facts:
+            for fact in self.case_facts:
+                evidence_points = fact.get("evidence_points", [])
+                for ev in evidence_points:
+                    ev_desc = ev.get("desc", "")
+                    if ev_desc:
+                        truth_memory.append(f"  - {ev_desc}")
+        
+        if not truth_memory:
+            return []
+
 
         import json
         system_prompt = prompts.SYSTEM_PROMPT_LEAK_CHECK
-        user_input = f"[警方保密清单]\n{json.dumps(self.truth_keywords, ensure_ascii=False)}\n\n[嫌疑人全量口供]\n{all_responses_str}"
-
+        user_input = f"[核心真相记忆]\n{truth_memory}\n\n[已检测出的泄密事实]\n{self.detected_leaked_facts}\n\n[嫌疑人全量口供]\n{all_responses_str}"
         try:
-            raw_res = self.api_client.generate_response(system_prompt, user_input, temperature=0.1, max_tokens=200).strip()
-            
+            raw_res = self.api_client.generate_response(system_prompt, user_input, temperature=0.1, max_tokens=500).strip()
             if raw_res.startswith("```json"):
                 raw_res = raw_res[7:]
             if raw_res.startswith("```"):
@@ -68,11 +87,17 @@ class Referee:
                 raw_res = raw_res[:-3]
                 
             parsed = json.loads(raw_res.strip())
-            leaked = parsed.get("leaked_keywords", [])
+            leaked = parsed.get("leaked_facts", [])
+            
+            # 将新检测到的泄密事实添加到已检测列表
+            for fact in leaked:
+                if fact not in self.detected_leaked_facts:
+                    self.detected_leaked_facts.append(fact)
+            
             return leaked if isinstance(leaked, list) else []
         except Exception as e:
-            # Fallback to naive matching if LLM parsing fails
-            return [kw for kw in self.truth_keywords if kw.lower() in all_responses_str.lower()]
+            # Fallback: 简单匹配真相记忆中的关键描述
+            return []
 
     def adjudicate(self, report_data: Dict, psych_state) -> Dict:
         """
@@ -89,10 +114,15 @@ class Referee:
         # 逻辑分数计算：初始分(总轮次) - 矛盾数
         final_logic_score = total_max_rounds - conflicts_count
 
-        # 关键词泄露计算 (大模型语义判断)
+        # 泄露真相计算 (大模型语义判断)
         all_responses = " ".join([r['a'] for r in report_data["rounds"]])
         matched = self.semantic_leak_check(all_responses)
-        final_leak_rate = len(matched) / len(self.truth_keywords) if self.truth_keywords else 0.0
+        # 计算总证据点数量作为分母
+        total_evidence_count = 0
+        if self.case_facts:
+            for fact in self.case_facts:
+                total_evidence_count += len(fact.get("evidence_points", []))
+        final_leak_rate = len(matched) / total_evidence_count if total_evidence_count > 0 else 0.0
 
         verdict = self.get_final_verdict(
             int(final_logic_score),
@@ -112,10 +142,47 @@ class Referee:
         """
         生成冷静、非戏剧化的数据总结。
         """
-        # 胜负判定：逻辑坍塌、泄露过高或防御崩溃
-        is_breakthrough = logic_score <= (total_score * 0.6) or leak_rate > 0.6 or final_defense < 10
-        winner = "审讯突破 (突破口已形成)" if is_breakthrough else "未能突破 (口供暂未瓦解)"
+        # 计算逻辑坍塌、泄露、防御崩溃的指标,并将其转换为0-1范围,指标值越高,崩溃程度越高
+        logic_collapse = 1 - logic_score / total_score
+        information_leak = leak_rate
+        mental_collapse = 1 - final_defense / 100
 
+        # 综合判定(逻辑，泄露，防御)
+        if (logic_collapse)*0.4+(information_leak)*0.4+(mental_collapse)*0.2 >= 0.6:
+            is_breakthrough = True
+        else:
+            is_breakthrough = False
+        
+        # 判定结果
+        if is_breakthrough:
+            # 根据突破程度细化结果
+            if logic_collapse >= 0.6 and information_leak >= 0.6 and mental_collapse >= 0.9:
+                winner = "审讯突破 (全面突破，口供彻底瓦解)"
+            elif logic_collapse >= 0.6 and information_leak >= 0.6:
+                winner = "审讯突破 (逻辑崩溃且信息大量泄漏)"
+            elif logic_collapse >= 0.6 and mental_collapse >= 0.9:
+                winner = "审讯突破 (逻辑崩溃且心理防线崩溃)"
+            elif information_leak >= 0.6 and mental_collapse >= 0.9:
+                winner = "审讯突破 (信息大量泄漏且心理防线崩溃)"
+            elif logic_score >= 0.6:
+                winner = "审讯突破 (逻辑体系崩溃)"
+            elif information_leak >= 0.6:
+                winner = "审讯突破 (核心信息大量泄漏)"
+            elif mental_collapse >= 0.9:
+                winner = "审讯突破 (心理防线崩溃)"
+            else:
+                winner = "审讯突破 (突破口已形成)"
+        else:
+            # 根据抵抗程度细化结果
+            if logic_collapse <= 0.2 and information_leak <= 0.2 and mental_collapse <= 0.5:
+                winner = "未能突破 (口供坚定，无懈可击)"
+            elif logic_collapse <= 0.4 and information_leak <= 0.4 and mental_collapse <= 0.6:
+                winner = "未能突破 (口供稳定，抵抗有力)"
+            elif logic_collapse <= 0.4 and information_leak <= 0.4:
+                winner = "未能突破 (口供基本稳定)"
+            else:
+                winner = "未能突破 (口供暂未瓦解)"
+                
         # 提取对话实录
         transcript_lines = []
         if report_data and "rounds" in report_data:
@@ -155,7 +222,7 @@ class Referee:
         )
         
         try:
-            summary = self.api_client.generate_response(prompts.SYSTEM_PROMPT_DATA_ANALYST, summary_prompt, temperature=0.1)
+            summary = self.api_client.generate_response(prompts.SYSTEM_PROMPT_DATA_ANALYST, summary_prompt, temperature=0.1, max_tokens=3000)
         except Exception as e:
             summary = f"评估流程完成，数据已存档。生成失败: {e}"
 

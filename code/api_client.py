@@ -58,7 +58,7 @@ class QianwenAPIClient:
             "Authorization": f"Bearer {self.api_key}"
         }
         try:
-            response = requests.post(url, json=payload, headers=headers, timeout=30)
+            response = requests.post(url, json=payload, headers=headers, timeout=80)
             if response.status_code == 200:
                 result = response.json()
                 if "choices" in result:

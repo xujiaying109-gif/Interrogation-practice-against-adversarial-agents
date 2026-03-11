@@ -143,7 +143,12 @@ def build_langgraph_app(interrogator_agent, suspect_agent, referee_agent):
         # 将历史回答 + 本次最新回答拼起来，送给大模型进行语义判重
         all_responses = " ".join([r.get('a', '') for r in state['report_data']] + [current_turn_data.get('a', '')])
         matched = referee_agent.semantic_leak_check(all_responses)
-        leak_rate = len(matched) / len(referee_agent.truth_keywords) if referee_agent.truth_keywords else 0.0
+        # 计算总证据点数量作为分母
+        total_evidence_count = 0
+        if referee_agent.case_facts:
+            for fact in referee_agent.case_facts:
+                total_evidence_count += len(fact.get("evidence_points", []))
+        leak_rate = len(matched) / total_evidence_count if total_evidence_count > 0 else 0.0
         
         current_turn_data["logic_score"] = cumulative_logic_score
         current_turn_data["leak_rate"] = leak_rate
@@ -282,7 +287,7 @@ if __name__ == "__main__":
         {"USE_MOCK_LLM": False, "DEFAULT_SUSPECT": current_profile, "TOTAL_ROUNDS": rounds}
     )
     suspect_agent.psych_machine.total_rounds = rounds
-    referee_agent = Referee(api_client=api_client, truth_keywords=selected_case.get("keywords", []))
+    referee_agent = Referee(api_client=api_client, case_facts=selected_case['case_data'].get("facts", []))
 
     # --- 执行功能1展示 ---
     display_intelligence_matrix(interrogator_agent, selected_case["case_data"])
