@@ -1,0 +1,81 @@
+{
+    "id": "laundering_zheng",
+    "title": "珠宝店黄金洗钱案",
+    "suspect_profile": {
+        "name": "郑老板",
+        "personality": "cautious",
+        "speaking_style": "formal"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "郑老板经营一家金店，实际为诈骗团伙清洗资金。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "诈骗团伙将赃款转入郑老板指定的账户。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "郑老板安排'车手'进店，虚假购买大量黄金条。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "随后郑老板将黄金回购或在黑市变现，扣除20%手续费。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "店内监控显示，所谓'顾客'进店后直接拿货，并未挑选。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "郑老板的账户流水在深夜有大量频繁的大额进出。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "生意/买卖/洗钱",
+                "narrative": "开门做生意，客户来买黄金我当然卖，我哪知道他们的钱干不干净？"
+            },
+            {
+                "tag": "不挑/直接拿",
+                "narrative": "那些人是土豪，买金条是为了投资，不挑选很正常。"
+            },
+            {
+                "tag": "流水/转账/深夜",
+                "narrative": "大额进出是因为黄金价格波动大，我得及时补货，有时差。"
+            }
+        ]
+    },
+    "keywords": [
+        "金店",
+        "黄金",
+        "洗钱",
+        "车手",
+        "手续费",
+        "回购",
+        "流水",
+        "深夜",
+        "诈骗团伙",
+        "虚假交易"
+    ]
+}

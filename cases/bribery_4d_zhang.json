@@ -1,0 +1,153 @@
+{
+    "id": "c_bribery_4d_001",
+    "title": "张局长受贿案(四维图谱验证版)",
+    "suspect_profile": {
+        "name": "张局长",
+        "personality": "arrogant",
+        "speaking_style": "formal"
+    },
+    "case_data": {
+        "nodes": {
+            "persons": [
+                {
+                    "id": "p_zhang",
+                    "name": "张局长",
+                    "role": "被留置人",
+                    "status": "exposed"
+                },
+                {
+                    "id": "p_wang",
+                    "name": "王老板",
+                    "role": "行贿人",
+                    "status": "hidden",
+                    "break_conditions": {
+                        "required_evidence": [
+                            "ev_phone_wang",
+                            "ev_meeting_record"
+                        ],
+                        "fallback_strategy": "直接否认"
+                    }
+                },
+                {
+                    "id": "p_li",
+                    "name": "李某(小舅子)",
+                    "role": "特定关系人",
+                    "status": "hidden",
+                    "break_conditions": {
+                        "required_evidence": [
+                            "ev_bank_transfer_li",
+                            "ev_family_relationship"
+                        ],
+                        "fallback_strategy": "特定关系人隔离算子"
+                    }
+                }
+            ],
+            "powers": [
+                {
+                    "id": "pow_approve",
+                    "desc": "高新区绿化工程主导审批权",
+                    "status": "exposed"
+                }
+            ],
+            "monies": [
+                {
+                    "id": "m_100w",
+                    "amount": "100万元",
+                    "real_nature": "受贿款",
+                    "surface_nature": "企业咨询费",
+                    "status": "hidden",
+                    "break_conditions": {
+                        "required_evidence": [
+                            "ev_bank_transfer_li",
+                            "ev_false_iou"
+                        ],
+                        "fallback_strategy": "合法化包装算子"
+                    }
+                }
+            ],
+            "matters": [
+                {
+                    "id": "mat_project",
+                    "desc": "沿湖绿化工程违规中标",
+                    "status": "hidden",
+                    "break_conditions": {
+                        "required_evidence": [
+                            "ev_bidding_docs",
+                            "ev_meeting_minutes"
+                        ],
+                        "fallback_strategy": "集体决策抗辩算子"
+                    }
+                }
+            ]
+        },
+        "edges": [
+            {
+                "source": "p_wang",
+                "target": "p_li",
+                "relation": "资金输送",
+                "item": "m_100w"
+            },
+            {
+                "source": "p_zhang",
+                "target": "mat_project",
+                "relation": "滥用职权干预",
+                "item": "pow_approve"
+            }
+        ],
+        "facts": [
+            {
+                "fact_id": "f1",
+                "fact_desc": "张局长利用职权干预绿化工程招投标",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_bidding_docs",
+                        "desc": "招投标文件出现为王老板公司量身定制的排他性条款",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_meeting_minutes",
+                        "desc": "党组会议记录显示张局长在会上强行定调由王老板公司中标",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f2",
+                "fact_desc": "王老板向张局长输送100万利益，由张局长小舅子李某代收",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_bank_transfer_li",
+                        "desc": "王老板公司账目显示有一笔100万以“咨询费”名义打入李某账户",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_family_relationship",
+                        "desc": "户籍资料与社会关系证明李某是张局长的亲弟弟（小舅子）",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_false_iou",
+                        "desc": "查获的李某出具的100万民间借据，经笔迹鉴定为近期伪造",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f3",
+                "fact_desc": "张局长与王老板私下频繁串供并销毁证据",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_phone_wang",
+                        "desc": "张局长与王老板案发前有频繁的加密通话",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_meeting_record",
+                        "desc": "高新区某隐秘茶所监控拍到带走留置前一日，张局长与王老板单独会面",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ]
+    }
+}

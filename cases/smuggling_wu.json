@@ -1,0 +1,85 @@
+{
+    "id": "smuggling_wu",
+    "title": "水客团伙手机走私案",
+    "suspect_profile": {
+        "name": "吴领队",
+        "personality": "cautious",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "吴领队组织'水客'每日多次往返口岸。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "通过人体绑藏、行李夹带方式走私最新款手机。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "吴领队在口岸附近的停车场负责收货和分发酬金。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "警方截获了吴领队的记账本，记录了半年的走私流水。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "吴领队与境外供货商'阿强'有频繁的资金往来。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "被抓时，吴领队的后备箱里有50台未拆封的涉案手机。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "手机/带货/走私",
+                "narrative": "我就是做正规代购的，朋友托我带点特产，手机是帮人买的，不是走私。"
+            },
+            {
+                "tag": "停车场/收货",
+                "narrative": "我在停车场是在等人，那些手机是我自己开店要卖的存货。"
+            },
+            {
+                "tag": "账本/流水",
+                "narrative": "那个本子是我记的生活费，不是什么走私流水。"
+            },
+            {
+                "tag": "阿强/转账",
+                "narrative": "阿强是我表弟，那是家里亲戚间的人情往来。"
+            }
+        ]
+    },
+    "keywords": [
+        "水客",
+        "绑藏",
+        "手机",
+        "口岸",
+        "停车场",
+        "记账本",
+        "阿强",
+        "50台",
+        "走私",
+        "后备箱"
+    ]
+}

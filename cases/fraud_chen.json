@@ -1,0 +1,81 @@
+{
+    "id": "fraud_chen",
+    "title": "老年理财集资诈骗案",
+    "suspect_profile": {
+        "name": "陈经理",
+        "personality": "arrogant",
+        "speaking_style": "formal"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "陈经理向社区老人推销'夕阳红'养老理财产品。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "承诺年化收益率20%，且保本保息。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "实际上公司没有任何实体投资项目，属于庞氏骗局。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "陈经理将收取的300万资金转入了自己和妻子的私人账户。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "陈经理伪造了与某大型国企的合作协议。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "多名老人投入毕生积蓄后，利息断供。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "投资/亏损/骗局",
+                "narrative": "投资有风险，我们是真的在做项目，只是市场环境不好亏了，不是诈骗。"
+            },
+            {
+                "tag": "转账/私人账户/钱",
+                "narrative": "转到私人账户是为了方便给客户发利息，公司账户冻结了。"
+            },
+            {
+                "tag": "协议/国企/造假",
+                "narrative": "协议是真的，是那个国企临时违约了，我也是受害者。"
+            }
+        ]
+    },
+    "keywords": [
+        "养老理财",
+        "20%",
+        "保本",
+        "庞氏骗局",
+        "300万",
+        "私人账户",
+        "伪造协议",
+        "国企",
+        "集资",
+        "老人"
+    ]
+}
