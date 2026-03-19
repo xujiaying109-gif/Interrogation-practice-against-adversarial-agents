@@ -183,11 +183,18 @@ if st.session_state.get("game") and st.session_state.game["started"]:
             st.write(f"**嫌疑人 {st.session_state.target_case['suspect_profile']['name']}**")
             st.write(r['a'])
             with st.container(border=True):
-                c1, c2, c3, c4 = st.columns(4)
+                c1, c2, c3, c4, c5 = st.columns(5)
                 c1.metric("防御值", f"{r['def']:.1f}")
                 c2.metric("压力值", f"{r['str']:.1f}")
                 c3.metric("逻辑分", f"{int(r.get('logic_score', gs['max_rounds']))}/{gs['max_rounds']}")
-                c4.metric("泄露率", f"{r.get('leak_rate', 0.0) * 100:.0f}%")
+                c4.metric("细节泄露率", f"{r.get('leak_rate', 0.0) * 100:.0f}%")
+                c5.metric("事实泄露率", f"{r.get('leak_rate_fact', 0.0) * 100:.0f}%")
+                if r.get("new_leaked_descs"): 
+                    leaked_details = "  \n".join(r['new_leaked_descs']) if isinstance(r['new_leaked_descs'], list) else r['new_leaked_descs']
+                    st.error(f"新泄露细节：  \n{leaked_details}")
+                if r.get("new_leaked_fact_descs"): 
+                    leaked_facts = "  \n".join(r['new_leaked_fact_descs']) if isinstance(r['new_leaked_fact_descs'], list) else r['new_leaked_fact_descs']
+                    st.error(f"新泄露事实：  \n{leaked_facts}")
                 if r.get("contradiction"): st.error(f"🚩 逻辑矛盾点：{r['contradiction']}")
 
     # 游戏推进
@@ -253,7 +260,7 @@ else:
     **核心机制说明：**
     * **心理防御 (Defense)**：通过高压提问降低，低于 10 时嫌疑人将彻底招供。
     * **逻辑自洽 (Logic)**：裁判将实时比对嫌疑人的历次供述。**前后矛盾会导致逻辑分直接扣减。**
-    * **信息泄露 (Leakage)**：嫌疑人在回答中提及真实犯罪细节的比例。
+    * **信息泄露 (Leakage)**：嫌疑人在回答中提及真实犯罪细节的比例。当同一事实涉及到的所有细节都被泄露时，认为该事实已被泄露。
     * **战术对照**：系统视角下可展开查看线索的真伪，协助你规划提问路径。
 
     **👈 请从左侧侧边栏选择案件并点击“开始审讯部署”。**

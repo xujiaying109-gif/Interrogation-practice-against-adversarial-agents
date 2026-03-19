@@ -140,19 +140,22 @@ def build_langgraph_app(interrogator_agent, suspect_agent, referee_agent):
             
         cumulative_logic_score = float(state['max_rounds']) - past_conflicts
         
-        # 将历史回答 + 本次最新回答拼起来，送给大模型进行语义判重
-        all_responses = " ".join([r.get('a', '') for r in state['report_data']] + [current_turn_data.get('a', '')])
-        matched = referee_agent.semantic_leak_check(all_responses)
+        current_response_only = current_turn_data.get('a', '')
+        all_leaked_descs, new_leaked_descs, all_leaked_fact_descs, new_leaked_fact_descs = referee_agent.semantic_leak_check(current_response_only)
         # 计算总证据点数量作为分母
-        total_evidence_count = 0
+        total_fact_desc_count = 0
+        total_desc_count = 0
         if referee_agent.case_facts:
             for fact in referee_agent.case_facts:
-                total_evidence_count += len(fact.get("evidence_points", []))
-        leak_rate = len(matched) / total_evidence_count if total_evidence_count > 0 else 0.0
-        
+                total_desc_count += len(fact.get("evidence_points", []))
+                total_fact_desc_count += 1
+        leak_fact_rate = len(all_leaked_fact_descs) / total_fact_desc_count if total_fact_desc_count > 0 else 0.0
+        leak_rate = len(all_leaked_descs) / total_desc_count if total_desc_count > 0 else 0.0
         current_turn_data["logic_score"] = cumulative_logic_score
+        current_turn_data["leak_rate_fact"] = leak_fact_rate
         current_turn_data["leak_rate"] = leak_rate
-    
+        current_turn_data["new_leaked_descs"] = new_leaked_descs
+        current_turn_data["new_leaked_fact_descs"] = new_leaked_fact_descs
         print(f"\n📊 状态监控 | 防御: {state['defense_value']:.1f} | 压力: {state['stress_value']:.1f}")
         return {
             "last_conflict": conflict_res.get("conflict", "") if conflict_res else "",
