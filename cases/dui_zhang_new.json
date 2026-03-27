@@ -1,0 +1,86 @@
+{
+    "id": "dui_zhang_new",
+    "title": "豪车醉驾顶包案",
+    "suspect_profile": {
+        "name": "张总",
+        "personality": "defiant",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "2023年10月5日晚，张总在酒局喝了半斤白酒。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "张总坚持自己驾驶黑色奔驰车回家。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "车辆撞上护栏后，张总打电话叫司机小王来顶包。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "承诺给小王10万元作为封口费。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "行车记录仪被张总拔掉扔进草丛。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "路口监控拍到驾驶位下来的是穿白衬衫的人（张总），小王穿黑衣。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_4",
+                        "desc": "张总血液酒精含量高达180mg/100ml。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "开车/驾驶/顶包",
+                "narrative": "我喝多了在后排睡觉，一直是小王开的，撞车了我才醒。"
+            },
+            {
+                "tag": "监控/衣服/白衬衫",
+                "narrative": "监控看花眼了吧，那天我也穿的黑衣服，和小王一样。"
+            },
+            {
+                "tag": "行车记录仪",
+                "narrative": "记录仪坏了好久了，我正准备换呢。"
+            }
+        ]
+    },
+    "keywords": [
+        "白酒",
+        "奔驰",
+        "顶包",
+        "10万元",
+        "小王",
+        "行车记录仪",
+        "白衬衫",
+        "酒精",
+        "护栏",
+        "监控"
+    ]
+}

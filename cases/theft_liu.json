@@ -1,0 +1,85 @@
+{
+    "id": "theft_liu",
+    "title": "公司仓库名酒失窃案",
+    "suspect_profile": {
+        "name": "刘库管",
+        "personality": "nervous",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "2023年国庆假期期间，公司仓库丢失了20箱茅台酒。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "刘库管利用值班之便，关闭了仓库西南角的监控电源。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "刘库管伙同校外人员，用面包车将酒运走变卖。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "刘库管的银行账户近期有一笔5万元的现金存入。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "现场门锁没有撬压痕迹，说明是熟人作案。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "刘库管声称当晚在传达室睡觉，但手机步数显示他走了1万步。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "监控/坏了/黑屏",
+                "narrative": "监控经常坏，那天正好坏了，跟我没关系，我一直在睡觉。"
+            },
+            {
+                "tag": "钱/5万/转账",
+                "narrative": "那5万块是我找亲戚借来装修房子的，不是卖酒的钱。"
+            },
+            {
+                "tag": "面包车/运走",
+                "narrative": "那辆车是我朋友来找我借东西的，没运酒。"
+            },
+            {
+                "tag": "步数/走路",
+                "narrative": "我晚上在院子里跑步锻炼身体，这也不行吗？"
+            }
+        ]
+    },
+    "keywords": [
+        "茅台",
+        "仓库",
+        "监控",
+        "断电",
+        "面包车",
+        "5万元",
+        "门锁",
+        "熟人",
+        "步数",
+        "值班"
+    ]
+}

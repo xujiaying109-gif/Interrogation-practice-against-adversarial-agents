@@ -1,0 +1,85 @@
+{
+    "id": "pollution_wang",
+    "title": "化工厂暗管排污案",
+    "suspect_profile": {
+        "name": "王厂长",
+        "personality": "arrogant",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "王厂长为节省污水处理成本，私设隐蔽排污管。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "暗管直通厂外的农田灌溉渠。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "排污主要在深夜进行，通过远程遥控开关控制。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "环保局检测出周边土壤重金属严重超标。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "厂内的污水处理设备长期处于'检修'停运状态。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "王厂长的账本上没有购买污水处理药剂的记录。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "排污/暗管/泄漏",
+                "narrative": "那是管道老化意外泄漏，我们也是受害者，正在抢修呢。"
+            },
+            {
+                "tag": "设备/停运/检修",
+                "narrative": "设备是在轮换休息，没有停运，我们一直达标排放。"
+            },
+            {
+                "tag": "药剂/账本",
+                "narrative": "我们用的是新型物理过滤技术，不需要买那么多化学药剂。"
+            },
+            {
+                "tag": "重金属/超标",
+                "narrative": "那是上游化肥厂排的，或者是农民自己乱用农药，跟我们无关。"
+            }
+        ]
+    },
+    "keywords": [
+        "暗管",
+        "排污",
+        "灌溉渠",
+        "重金属",
+        "深夜",
+        "遥控",
+        "停运",
+        "药剂",
+        "成本",
+        "检测"
+    ]
+}

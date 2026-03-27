@@ -1,0 +1,81 @@
+{
+    "id": "fake_ma",
+    "title": "网店销售假冒运动鞋案",
+    "suspect_profile": {
+        "name": "马店主",
+        "personality": "nervous",
+        "speaking_style": "casual"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "马店主在网店宣称销售'正品尾单'名牌运动鞋。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "实际货源来自南方某地下黑工厂，进价50元。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "马店主以500元的价格售出，获利数十万。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "马店主伪造了品牌授权书和防伪扣。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "仓库内查获2000双待发货的假鞋。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "消费者投诉鞋子开胶、掉色严重。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "假货/正品/黑工厂",
+                "narrative": "我也是受害者，是供货商骗我说这是正品，我不知情啊！"
+            },
+            {
+                "tag": "质量/开胶",
+                "narrative": "这些是工厂出来的瑕疵品，所以便宜，不是假货。"
+            },
+            {
+                "tag": "授权书/伪造",
+                "narrative": "授权书是上家给我的，我不知道是假的。"
+            }
+        ]
+    },
+    "keywords": [
+        "网店",
+        "运动鞋",
+        "黑工厂",
+        "50元",
+        "伪造",
+        "授权书",
+        "防伪扣",
+        "假鞋",
+        "开胶",
+        "正品尾单"
+    ]
+}

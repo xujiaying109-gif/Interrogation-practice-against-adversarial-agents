@@ -1,0 +1,81 @@
+{
+    "id": "embezzle_zhao",
+    "title": "销售总监虚假报销案",
+    "suspect_profile": {
+        "name": "赵总监",
+        "personality": "cautious",
+        "speaking_style": "formal"
+    },
+    "case_data": {
+        "facts": [
+            {
+                "fact_id": "f_1",
+                "fact_desc": "主要犯罪行为与核心动作",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_1_1",
+                        "desc": "赵总监虚构了多场'高端客户答谢会'。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_2",
+                        "desc": "通过购买虚假餐饮、住宿发票套取公司资金50万元。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_1_3",
+                        "desc": "实际资金流向了赵总监用来装修新房。",
+                        "is_exposed": false
+                    }
+                ]
+            },
+            {
+                "fact_id": "f_2",
+                "fact_desc": "相关物证鉴定与资金/轨迹流向",
+                "evidence_points": [
+                    {
+                        "ev_id": "ev_2_1",
+                        "desc": "所谓的参会客户名单大部分是伪造的。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_2",
+                        "desc": "赵总监与发票贩子的微信聊天记录曝光了买票过程。",
+                        "is_exposed": false
+                    },
+                    {
+                        "ev_id": "ev_2_3",
+                        "desc": "公司审计发现发票连号现象严重。",
+                        "is_exposed": false
+                    }
+                ]
+            }
+        ],
+        "fake_events": [
+            {
+                "tag": "报销/答谢会/虚构",
+                "narrative": "那些会议都是真实发生的，客户比较低调不愿留名，费用是为了维护关系。"
+            },
+            {
+                "tag": "资金/装修/钱",
+                "narrative": "装修钱是我父母给的，报销款我是帮公司垫付了其他采购。"
+            },
+            {
+                "tag": "发票/连号",
+                "narrative": "发票是酒店一次性开出来的，连号很正常啊。"
+            }
+        ]
+    },
+    "keywords": [
+        "答谢会",
+        "发票",
+        "50万元",
+        "装修",
+        "伪造名单",
+        "发票贩子",
+        "审计",
+        "连号",
+        "套取",
+        "资金"
+    ]
+}
